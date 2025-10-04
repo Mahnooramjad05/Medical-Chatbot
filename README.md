@@ -1,82 +1,81 @@
-# Medical-Chatbot
-How to run?
-STEPS:
-Clone the repository
+🧠 Medical Chatbot
+An intelligent Medical Chatbot built with Flask, LangChain, Pinecone, and Groq LLM, designed to answer health-related questions using retrieval-augmented generation (RAG).
+This system leverages Hugging Face embeddings and a Pinecone vector database to fetch the most relevant medical information and generate accurate, context-aware responses.
 
-git clonehttps://github.com/M-Afaq-Bhatti/medical_chatbot
-STEP 01- Create a conda environment after opening the repository
-conda create -n medibot python=3.10 -y
-conda activate medibot
-STEP 02- install the requirements
+🚀 Features
+🩺 Medical Q&A System – Answers user questions based on medical documents or indexed data.
+⚙️ RAG Pipeline – Combines document retrieval and LLM reasoning for fact-based answers.
+🧩 Pinecone Vector Store Integration – Stores and retrieves medical embeddings efficiently.
+🤖 Groq Llama 3.1 Model – Generates coherent and contextually relevant responses.
+🌐 Flask Web App – Simple web interface for chat interaction (chat.html).
+🔒 Environment Secure – Uses .env for managing API keys securely.
+🧱 Tech Stack
+
+Component	Description
+Flask	Web framework for serving the chatbot UI and API
+LangChain	Framework for chaining LLM and retrieval logic
+Groq (Llama 3.1-8B Instant)	Language model used for response generation
+Pinecone	Vector database for semantic search and retrieval
+Hugging Face Embeddings	Used to convert text documents into vector form
+HTML / JS	Frontend for user chat interface
+⚙️ Setup Instructions
+1. Clone the Repository
+git clone https://github.com/your-username/medical-chatbot.git
+cd medical-chatbot
+
+2. Create a Virtual Environment
+python -m venv venv
+source venv/bin/activate   # For Linux/Mac
+venv\Scripts\activate      # For Windows
+
+3. Install Dependencies
 pip install -r requirements.txt
-Create a .env file in the root directory and add your Pinecone & openai credentials as follows:
-PINECONE_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-GROQ_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-# run the following command to store embeddings to pinecone
-python store_index.py
-# Finally run the following command
+
+4. Set Up Environment Variables
+Create a .env file in the root directory:
+PINECONE_API_KEY=your_pinecone_api_key
+GROQ_API_KEY=your_groq_api_key
+
+5. Run the Flask App
 python app.py
-Now,
-
-open up localhost:
-Techstack Used:
-Python
-LangChain
-Flask
-GROQ
-Pinecone
-AWS-CICD-Deployment-with-Github-Actions (Optional)
-1. Login to AWS console.
-2. Create IAM user for deployment
-#with specific access
-
-1. EC2 access : It is virtual machine
-
-2. ECR: Elastic Container registry to save your docker image in aws
 
 
-#Description: About the deployment
+Visit the app in your browser at:
+http://localhost:8080
+🧩 Project Structure
+medical-chatbot/
+│
+├── src/
+│   ├── helper.py             # Handles embeddings and vector store setup
+│   ├── prompt.py             # Contains the system prompt and templates
+│
+├── templates/
+│   └── chat.html             # Web UI for chatting with the bot
+│
+├── app.py                    # Main Flask application
+├── .env                      # Environment variables
+├── requirements.txt          # Dependencies
+└── README.md                 # Documentation
 
-1. Build docker image of the source code
+🧠 How It Works
+Embedding Generation:
+Medical documents are embedded using Hugging Face embeddings.
+Vector Storage:
+Embeddings are stored in a Pinecone index (medical-chatbot).
+Retrieval:
+When a user asks a question, the system retrieves the top 3 (k=3) relevant chunks.
+Response Generation:
+The retrieved context is passed to Llama 3.1 through LangChain for generating the final medical answer.
 
-2. Push your docker image to ECR
+🧾 Example Query
+User: “What are the symptoms of hypertension?”
+Bot: “Common symptoms of hypertension include headaches, shortness of breath, dizziness, or nosebleeds. However, it is often asymptomatic and requires regular monitoring.”
 
-3. Launch Your EC2 
+⚠️ Disclaimer
+This chatbot is for educational and informational purposes only.
+It is not a substitute for professional medical advice, diagnosis, or treatment.
+Always consult a qualified healthcare provider for any medical concerns.
 
-4. Pull Your image from ECR in EC2
-
-5. Lauch your docker image in EC2
-
-#Policy:
-
-1. AmazonEC2ContainerRegistryFullAccess
-
-2. AmazonEC2FullAccess
-3. Create ECR repo to store/save docker image
-- Save the URI: 315865595366.dkr.ecr.us-east-1.amazonaws.com/medicalbot
-4. Create EC2 machine (Ubuntu)
-5. Open EC2 and Install docker in EC2 Machine:
-#optinal
-
-sudo apt-get update -y
-
-sudo apt-get upgrade
-
-#required
-
-curl -fsSL https://get.docker.com -o get-docker.sh
-
-sudo sh get-docker.sh
-
-sudo usermod -aG docker ubuntu
-
-newgrp docker
-6. Configure EC2 as self-hosted runner:
-setting>actions>runner>new self hosted runner> choose os> then run command one by one
-7. Setup github secrets:
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-AWS_DEFAULT_REGION
-ECR_REPO
-PINECONE_API_KEY
-OPENAI_API_KEY
+📧 Contact
+Developer: Mahnoor Amjad
+Field: AI/ML | NLP | Deep Learning | Data Science
