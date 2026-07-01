@@ -7,4 +7,3 @@ langchain-pinecone
 langchain-groq
 pinecone-client
 sentence-transformers
-flask-cors
